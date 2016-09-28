@@ -3,6 +3,7 @@ package com.example.herve.cradviewdemo.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.herve.cradviewdemo.R;
 import com.example.herve.cradviewdemo.bean.MedicineBean;
 import com.example.herve.cradviewdemo.bean.MedicineItemBean;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 
@@ -51,6 +53,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.HomeHolder
 
     @Override
     public int getItemViewType(int position) {
+        Logger.i("进入了getItemViewType" + position);
 
         MedicineItemBean medicineItemBean = data.get(position);
 
@@ -66,6 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.HomeHolder
     /*设置item的类型*/
     @Override
     public HomeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Logger.i("进入了onCreateViewHolder");
 
         View rootView = null;
         if (viewType == viewType_interval) {
@@ -84,6 +88,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.HomeHolder
 
     @Override
     public void onBindViewHolder(HomeHolder holder, int position) {
+        Logger.i("进入了onBindViewHolder");
 
         MedicineItemBean medicineItemBean = data.get(position);
 
@@ -105,7 +110,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.HomeHolder
     /*初始化item*/
     private void addItemView(SimpleHolder simpleHolder, MedicineItemBean medicineItemBean) {
 
-
+        Logger.i("进入了addItemView");
+        simpleHolder.llCardRootView.removeAllViews();
         if (medicineItemBean.isSelect()) {
             View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_title_view, simpleHolder.llCardRootView, false);
 
